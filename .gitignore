@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+
+venv/
+
+evidence/
+
+*.raw
+*.mem
+*.dmp
+*.7z
+
+pslist_output.txt
+
+.idea/
+.vscode/
