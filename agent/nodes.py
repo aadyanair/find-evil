@@ -1,5 +1,6 @@
 from parser import parse_processes
 from volatility_runner import run_plugin
+from network_parser import parse_netscan, analyze_network
 
 
 def analyze_node(state):
@@ -105,17 +106,22 @@ def execute_plugin_node(state):
     )
 
     return {
-        "plugin_output": output[:3000]
+        "plugin_output": output[:1000]
     }
 
 
 def report_node(state):
 
     report = f"""
-Investigation Report
+=============================
+      INVESTIGATION REPORT
+=============================
 
-Findings:
+Process Findings:
 {state['findings']}
+
+Network Findings:
+{state['network_findings']}
 
 Suspicion Score:
 {state['suspicion_score']}
@@ -132,4 +138,16 @@ Plugin Output Preview:
 
     return {
         "report": report
+    }    
+def network_node(state):
+
+    with open("netscan_output.txt", "r") as f:
+        output = f.read()
+
+    connections = parse_netscan(output)
+
+    findings = analyze_network(connections)
+
+    return {
+        "network_findings": findings
     }

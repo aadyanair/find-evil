@@ -1,8 +1,8 @@
 from typing import TypedDict, List
 
-
 class InvestigationState(TypedDict):
     findings: List[str]
+    network_findings: List[str]
     suspicion_score: int
     next_plugin: str
     reasoning: List[str]
