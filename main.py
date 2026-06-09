@@ -12,4 +12,11 @@ result = graph.invoke(
     }
 )
 
+# Save report to file
+with open("investigation_report.txt", "w") as f:
+    f.write(result["report"])
+
+# Print report to terminal
 print(result["report"])
+
+print("\nReport saved to investigation_report.txt")
